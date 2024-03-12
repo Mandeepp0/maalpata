@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/'
+export const BASE_URL = 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/'
 export const BASE = 'https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.73908&lng=76.78890&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
 export const card = [
         {
@@ -362,5 +362,8 @@ export const card = [
           }
         }
       ]
+
+export const alternativeCardImage = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExempmb2xuc2NiODJ5b3k4MHg0c3ptNXBlY2U0bnRhYTFxOWQ4eGN2MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/eSQKNSmg07dHq/giphy.gif'
+      
     
 

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { card, BASE_URL, BASE} from '../constants/Data'
+import { BASE } from '../constants/Data'
 
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import axios from 'axios';
-import TopRestroDdesign from './TopRestro.design';
+import CardDdesign from './Card.design';
 
 function SampleNextArrow(props) {
 
@@ -35,55 +34,74 @@ function SampleNextArrow(props) {
 const TopRestro = () => {
     
     const [restroData, setRestroData] = useState([]);
+    
     const settings = {
-        speed: 700,
-        slidesToShow: 4,
-        slidesToScroll: 2, 
-        nextArrow: <SampleNextArrow  />,
-        prevArrow: <SamplePrevArrow />
-    }
-    // console.log(BASE_URL+card[0].imageId)
+      dots: false,
+      infinite: false,
+      speed: 700,
+      slidesToShow: 4,
+      slidesToScroll: 2,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1450,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 1150,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 720,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ], 
+      nextArrow: <SampleNextArrow  />,
+      prevArrow: <SamplePrevArrow />,
+    };
+    
 
 
     const getData = async () => {
         let res = await fetch(BASE)
         res = await res.json();
-        // console.log(res.data.cards[0].card.card.imageGridCards.info)
         setRestroData(res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        // console.log(res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        // console.log(restroData)
 
     }
     useEffect(()=> {
         getData()
     }, [])
-    console.log(restroData)
+    
   return (
     <div className='border-b-2 bg-white flex justify-between px-5 lg:px-28 py-5 m-4 flex-col '>
 
         <div><span className='text-2xl font-bold'>What's on your mind?</span></div>
 
 
-        {
-            // restroData.map((item) => {
-            //     return (
-            //         <TopRestroDdesign key={item.info.id} props = {item}/>
-            //     )
-            // })
-        }
-
-        {/* <div className='flex flex-wrap '> */}
         <Slider {...settings} >
-        {
-            restroData.map((item) => {
-                return (
-                    <TopRestroDdesign props = {item} />
-                )
-            })
-        }
-        </Slider>
 
-        {/* </div> */}
+        {
+          restroData.map((item) => {
+            // console.log(item.info.id)
+            return (
+              <CardDdesign key={item.info.id}  props = {item} />
+              
+              )
+            })
+          }
+        </Slider>
 
     </div>
   )
