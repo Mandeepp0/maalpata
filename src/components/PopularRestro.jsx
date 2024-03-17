@@ -27,12 +27,7 @@ const PopularRestro = () => {
                     return (
                         <div className=''>
                             <CardDesign props={items} />
-                            <CardDesign props={items} />
-                            <CardDesign props={items} />
-                            <CardDesign props={items} />
-                            <CardDesign props={items} />
-                            <CardDesign props={items} />
-                            <CardDesign props={items} />
+                            
                         </div>
                     )
                 })
