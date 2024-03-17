@@ -5,20 +5,20 @@ import {data} from './DATA'
 
 const Search = () => {
 
-    const [val, setVal] = useState(29);
+    const [val, setVal] = useState('');
 
   return (
     <>
-        <div >
+        <div className='bg-white m-5 shadow-md min-h-96' >
             <div className='flex justify-center'>
-                <input type="text" className='border px-2 rounded-md  my-5 py-2  outline-none focus:bg-blue-50 w-[90%] focus:shadow-inner' placeholder='serach'
+                <input type="text" className='border px-2 rounded-md  my-5 py-2  outline-none focus:bg-blue-50 w-[90%] focus:shadow-inner' placeholder='SEARCH...'
             
-            onChange={(e)=>{console.log(e.target.value)}}
+            onChange={(e)=>{setVal(e.target.value)}}
             />
             </div>
             
             <div className='flex justify-center'>
-                <table className='mx-auto table-auto w-[90%] '>
+                <table className='mx-auto table-auto w-[90%] duration-200 '>
                     <thead>
                         <tr>
                             <th className='text-start'>S.No: </th>
@@ -29,11 +29,16 @@ const Search = () => {
                             <th className='text-start'>Phone</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='duration-100'>
                         {
-                            data.map((item) => {
+                            data.filter((item)=>{
+                                return(
+                                       
+                                    val.toLowerCase() === '' ? item : item.first_name.toLowerCase().includes(val)
+                                )})
+                            .map((item) => {
                                 return (
-                                    <tr  key={item.id}>
+                                    <tr className=' duration-150'  key={item.id}>
                                         <td>{item.id}</td>
                                         <td>{item.first_name}</td>
                                         <td>{item.first_name}</td>
